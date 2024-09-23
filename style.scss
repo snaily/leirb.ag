@@ -120,16 +120,13 @@ a:hover {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: oklch(38% 0.26 266.82);
+  background-color: oklch(38% 0.26 266.82);
   margin-left: 0.5rem;
   margin-right: -1rem;
 }
 #menu ul li.active {
   color: oklch(40% 0.02 60);
   overflow: visible;
-}
-#menu ul li.active .dot {
-  background: linear-gradient(to right in oklch, oklch(38.09% 0.2568 266.82), 100%, transparent 100%, transparent);
 }
 #menu ul li:hover {
   color: oklch(40% 0.02 60);

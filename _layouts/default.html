@@ -7,23 +7,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.title }}</title>
-  <link rel="stylesheet" href="style.css">
+  <title>{{ site.title }}: {{ page.title }}</title>
+  <link rel="stylesheet" href="/style.css">
   <!-- <meta name="description" content="">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+  <meta property="og:image:alt" content=""-->
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa"> -->
-  <!-- link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" -->
+  <!-- via https://realfavicongenerator.net/ -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" >
+  <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#1500c9">
+  <link rel="manifest" href="/site.webmanifest" />
 </head>
 
 <body>
@@ -32,8 +33,16 @@
       <h1>Gabriel Lundberg</h1>
       <!-- h2>builder & theorist in tech</h2 -->
       <ul>
-        <li><a href='/'>Getting in touch<div class='dot'></div></a></li>
-        <li class='active'><a href='/due-diligence'>Due diligence<div class='dot'></div></a></li>
+        {% assign menu_pages = site.pages | where_exp: "item", "item.menu_order" | sort: "menu_order" %}
+        {% for menu_page in menu_pages %}
+        <li{% if menu_page == page %} class='active'{% endif %}>
+          <a href='{{ menu_page.dir }}'>
+            {% if menu_page.menu_title %}{{ menu_page.menu_title }}{% else %}{{ menu_page.title }}{% endif %}
+            <div class='dot' style='background-color: {{ menu_page.color }};'></div>
+          </a>
+        </li>
+        <!--li class='active'><a href='/due-diligence'>Due diligence<div class='dot'></div></a></li-->
+        {% endfor %}
       </ul>
     </div>
     {{ content }}
