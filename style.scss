@@ -153,4 +153,14 @@ strong {
   color: oklch(38.09% 0 0);
 }
 
-/* When the page goes mobile, collapse margins vertically */
+/* Maximum width */
+@media (max-width: 612px) {
+  #content {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    row-gap: 1rem;
+  }
+  #menu, #bodytext {
+    padding: 0;
+  }
+}
